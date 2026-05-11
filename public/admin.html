@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<table border="1" width="100%">
+
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Room</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody id="data"></tbody>
+
+</table>
+
+<script>
+
+async function load() {
+
+ const res = await fetch("/api/admin/bookings");
+ const data = await res.json();
+
+ document.getElementById("data").innerHTML =
+   data.map(b =>
+     `<tr>
+       <td>${b.id}</td>
+       <td>${b.guest_name}</td>
+       <td>${b.email}</td>
+       <td>${b.room_type}</td>
+       <td>${b.status}</td>
+       <td>
+         <button onclick="del(${b.id})">Delete</button>
+       </td>
+     </tr>`
+   ).join("");
+
+}
+
+async function del(id) {
+
+ await fetch("/api/delete-booking/" + id, {
+   method: "DELETE"
+ });
+
+ load();
+
+}
+
+load();
+
+</script>
+
+</body>
+</html>

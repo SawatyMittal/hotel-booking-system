@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Booking</title>
+
+  <link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+
+<section class="booking-section">
+
+  <h2>Book Your Stay</h2>
+
+  <form id="bookingForm">
+
+    <input
+      type="text"
+      id="guest_name"
+      placeholder="Guest Name"
+      required
+    >
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+      required
+    >
+
+    <select id="room_type">
+
+      <option>Deluxe Room</option>
+
+      <option>Executive Suite</option>
+
+      <option>Presidential Suite</option>
+
+    </select>
+
+    <input
+      type="number"
+      id="guests"
+      placeholder="Guests"
+      required
+    >
+
+    <label>Check In</label>
+
+    <input
+      type="date"
+      id="check_in"
+      required
+    >
+
+    <label>Check Out</label>
+
+    <input
+      type="date"
+      id="check_out"
+      required
+    >
+
+    <button type="submit">
+      Confirm Booking
+    </button>
+
+    <button type="button" onclick="checkAvailability()">
+Check Availability
+</button>
+  </form>
+
+</section>
+
+<script src="app.js"></script>
+
+</body>
+</html>
